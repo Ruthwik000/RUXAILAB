@@ -136,6 +136,8 @@ import {
   getBottomCardsDefualt,
   getNavigatorDefault,
   getTopCardsDefualt,
+  createTopCardsComputed,
+  createBottomCardsComputed,
 } from '@/shared/utils/managerDefault'
 
 // Manager components
@@ -169,15 +171,13 @@ watchEffect(() => {
   }
 })
 
-const topCards = computed(() => {
-  if (!test.value) return []
-  return getTopCardsDefualt(test.value, 'userTest/unmoderated')
-})
+const topCards = computed(() =>
+  createTopCardsComputed(test.value, 'userTest/unmoderated'),
+)
 
-const bottomCards = computed(() => {
-  if (!test.value) return []
-  return getBottomCardsDefualt(test.value, 'userTest/unmoderated')
-})
+const bottomCards = computed(() =>
+  createBottomCardsComputed(test.value, 'userTest/unmoderated'),
+)
 
 const navigator = computed(() => {
   if (!test.value) return []

@@ -108,6 +108,8 @@ import {
   getBottomCardsDefualt,
   getNavigatorDefault,
   getTopCardsDefualt,
+  createTopCardsComputed,
+  createBottomCardsComputed,
 } from '@/shared/utils/managerDefault'
 import ManagerView from '@/shared/views/template/ManagerView.vue'
 import { calculateAccessLevel } from '@/shared/utils/accessLevel'
@@ -136,15 +138,11 @@ const user = computed(() => store.getters.user)
 const test = computed(() => store.getters.test)
 const accessLevel = computed(() => calculateAccessLevel(user.value, test.value))
 
-const topCards = computed(() => {
-  if (!test.value) return []
-  return getTopCardsDefualt(test.value, 'heuristic')
-})
+const topCards = computed(() => createTopCardsComputed(test.value, 'heuristic'))
 
-const bottomCards = computed(() => {
-  if (!test.value) return []
-  return getBottomCardsDefualt(test.value, 'heuristic')
-})
+const bottomCards = computed(() =>
+  createBottomCardsComputed(test.value, 'heuristic'),
+)
 
 const navigator = computed(() => {
   if (!test.value) return []

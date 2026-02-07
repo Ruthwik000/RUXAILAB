@@ -17,6 +17,7 @@ import { useStore } from 'vuex'
 import {
   getNavigatorDefault,
   getTopCardsDefualt,
+  createTopCardsComputed,
 } from '@/shared/utils/managerDefault'
 
 // Stores
@@ -29,7 +30,9 @@ const user = computed(() => store.getters.user)
 const test = computed(() => store.getters.test)
 const accessLevel = computed(() => calculateAccessLevel(user.value, test.value))
 
-const topCards = computed(() => getTopCardsDefualt(test.value, 'cardSorting'))
+const topCards = computed(() =>
+  createTopCardsComputed(test.value, 'cardSorting'),
+)
 const navigator = computed(() => {
   const items = getNavigatorDefault(
     test.value,

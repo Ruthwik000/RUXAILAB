@@ -185,6 +185,17 @@ export const getTopCardsDefualt = (test, type) => {
   ]
 }
 
+/**
+ * Helper to create topCards computed property with null check
+ * @param {Object} test - The test object (reactive)
+ * @param {string} type - The test type path
+ * @returns {Array} Array of top cards or empty array
+ */
+export const createTopCardsComputed = (test, type) => {
+  if (!test) return []
+  return getTopCardsDefualt(test, type)
+}
+
 // Accessibility-specific top cards
 export const getAccessibilityTopCards = (test, userRole, type) => {
   if (!test) return []
@@ -266,6 +277,17 @@ export const getBottomCardsDefualt = (test, type) => {
       path: `/${type}/answer/${test.answersDocId}`,
     },
   ]
+}
+
+/**
+ * Helper to create bottomCards computed property with null check
+ * @param {Object} test - The test object (reactive)
+ * @param {string} type - The test type path
+ * @returns {Array} Array of bottom cards or empty array
+ */
+export const createBottomCardsComputed = (test, type) => {
+  if (!test) return []
+  return getBottomCardsDefualt(test, type)
 }
 
 // Accessibility-specific bottom cards
